@@ -17,12 +17,7 @@ class DataList extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */ 
-	public  $session_key = 'da970bf35433d76ed9b5d67ee166ef4b';
-	
-	
-	
-	
-	
+
 	public function index(){
 		$page = $this->input->get('page') ? $this->input->get('page') : 1;
 		$limit = 50;
