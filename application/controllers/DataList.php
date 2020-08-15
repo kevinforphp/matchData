@@ -24,7 +24,8 @@ class DataList extends CI_Controller {
 	  }
 	public function index(){
 		$page = $this->input->get('page') ? $this->input->get('page'):1;
-		$result =  $this->API->MATCH_LIST(['page'=>$page]);
+		$type =  $this->input->get('type') ?$this->input->get('type'):"";
+		$result =  $this->API->MATCH_LIST(['page'=>$page,'type'=>$type]);
 		if($result['status']){
 			$data['result'] = $result['data'];
 		}else{

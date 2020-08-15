@@ -20,4 +20,13 @@ class Api_model extends CI_Model
 		$result['msg'] = "请求成功";
         return $result;
     }
+	public function MATCH_BAR(){
+		$result = [];
+		$sql = "SELECT * FROM match_bar";
+		$query = $this->db->query($sql);
+		$result['data'] = $query->result_array();
+		$result['status'] = 1;
+		$result['msg'] = "请求成功";
+		return $result;
+	}
 }

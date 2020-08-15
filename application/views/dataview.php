@@ -76,14 +76,15 @@ $imgStr = 'x-oss-process=image/resize,m_lfit,w_400/quality,Q_80/format,jpg/inter
 </head>
 <body>
 	<div class="match-bar">
-		<label for="weibo">
+		<a href="/dataList/index?page=2&type=1,2,3,4">2</a>
+<!-- 		<label for="weibo">
 			微博
 			<input id="weibo" type="checkbox" name="type" value="102">
 		</label>
 		
 		<input type="checkbox" name="type" value="104">
 		<input type="checkbox" name="type" value="108">
-		<input type="checkbox" name="type" value="110">
+		<input type="checkbox" name="type" value="110"> -->
 	</div>
 	<div class="main">
 		<?php foreach($result as $item):?>
