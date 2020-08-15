@@ -17,13 +17,19 @@ class DataList extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */ 
-
+	public function __construct()
+	  {
+	      parent::__construct();
+		  $this->load->model('Api_model','API');
+	  }
 	public function index(){
-		$page = $this->input->get('page') ? $this->input->get('page') : 1;
-		$limit = 50;
-		$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
-		$query = $this->db->query($sql);
-		$data['result'] = $query->result_array();
+		$page = $this->input->get('page') ? $this->input->get('page'):1;
+		$result =  $this->API->MATCH_LIST(['page'=>$page]);
+		if($result['status']){
+			$data['result'] = $result['data'];
+		}else{
+			$data['result'] = [];
+		}
 		$this->load->view('dataview',$data);
 	}
 }

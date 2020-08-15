@@ -5,12 +5,19 @@ class Api_model extends CI_Model
     {
         parent::__construct();
     }
-    public function select_users($params=[]){
-        $result=[];
-        $username = $params['username'];
-        if(!empty($params)){
-           
-        }
+    public function MATCH_LIST($params=[]){
+		$result = [];
+		$result['status'] = 0;
+		$result['data'] = [];
+		$result['msg'] = "参数错误";
+		
+		$page = isset($params['page']) ? $params['page']:1;
+		$limit = 30;
+		$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
+		$query = $this->db->query($sql);
+		$result['data'] = $query->result_array();
+		$result['status'] = 1;
+		$result['msg'] = "请求成功";
         return $result;
     }
 }
