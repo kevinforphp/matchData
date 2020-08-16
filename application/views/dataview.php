@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $imgStr = 'x-oss-process=image/resize,m_lfit,w_400/quality,Q_80/format,jpg/interlace,1/watermark,type_d3F5LXplbmhlaQ,size_16,text_5b6u5Y2a57KJ5Lid6YCa,color_FFFFFF,shadow_0,t_80,g_nw,x_16,y_8/watermark,type_d3F5LXplbmhlaQ,size_16,text_5b6u5Y2a57KJ5Lid6YCa,color_212329,shadow_0,t_80,g_ne,x_16,y_8';
+$this->load->helper('url'); 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>数据列表</title>
 	<meta name="referrer" content="no-referrer" />
+	<link rel="stylesheet" href="<?php echo base_url('public/pagination.css');?>">
 	<style>
 		body{
 			padding: 0;
@@ -76,7 +78,9 @@ $imgStr = 'x-oss-process=image/resize,m_lfit,w_400/quality,Q_80/format,jpg/inter
 </head>
 <body>
 	<div class="match-bar">
-		<a href="/dataList/index?page=2&type=1,2,3,4">2</a>
+		<a href="/dataList/index?page=2
+		
+		">2</a>
 <!-- 		<label for="weibo">
 			微博
 			<input id="weibo" type="checkbox" name="type" value="102">
@@ -104,4 +108,5 @@ $imgStr = 'x-oss-process=image/resize,m_lfit,w_400/quality,Q_80/format,jpg/inter
 		<?php endforeach;?>
 	</div>
 </body>
+<script src="<?php echo base_url('public/pagination.js');?>"></script>
 </html>
