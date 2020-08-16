@@ -21,6 +21,9 @@ class Api_model extends CI_Model
 		}
 		$query = $this->db->query($sql);
 		$result['data'] = $query->result_array();
+		$result['count'] = $this->db->count_all('pic');
+		$result['limit'] = $limit;
+		$result['page'] = $page;
 		$result['status'] = 1;
 		$result['msg'] = "请求成功";
         return $result;
