@@ -11,9 +11,14 @@ class Api_model extends CI_Model
 		$result['data'] = [];
 		$result['msg'] = "参数错误";
 		
-		$page = isset($params['page']) ? $params['page']:1;
+		$page = isset($params['page']) && !empty($params['page']) ? $params['page']:1;
+		$type = isset($params['type']) && !empty($params['type']) ? $params['type']:'';
 		$limit = 30;
-		$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
+		if($type){
+			$sql = "SELECT * FROM pic WHERE type in (".$type.")"." LIMIT ".($page - 1) * $limit.",".$limit * $page;
+		}else{
+			$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
+		}
 		$query = $this->db->query($sql);
 		$result['data'] = $query->result_array();
 		$result['status'] = 1;

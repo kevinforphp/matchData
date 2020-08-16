@@ -21,6 +21,7 @@ class DataList extends CI_Controller {
 	  {
 	      parent::__construct();
 		  $this->load->model('Api_model','API');
+		  $this->load->helper('url'); 
 	  }
 	public function index(){
 		$page = $this->input->get('page') ? $this->input->get('page'):1;
