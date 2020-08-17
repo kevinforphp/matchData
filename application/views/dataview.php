@@ -33,9 +33,20 @@ $this->load->helper('url');
 		}
 		.main a{
 			transition:100ms;
+			width:390px;
+			height:auto;	
+			margin-left:auto;
+			margin-bottom:10px;
+			border-radius:5px;
+			overflow:hidden;
+		}
+		.main a img{
+			width:100%;
+			height:auto;
 		}
 		.main a:hover{
-			transform:scale(1.05) ;
+			transform:translateY(-10px) scale(1.02);
+			box-shadow:rgba(0,0,0,.2) 0 5px 5px;
 		}
 		.selecte{
 			max-width: 1200px;
