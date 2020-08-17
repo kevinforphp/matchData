@@ -16,12 +16,17 @@ class Api_model extends CI_Model
 		$limit = 30;
 		if($type){
 			$sql = "SELECT * FROM pic WHERE type in (".$type.")"." LIMIT ".($page - 1) * $limit.",".$limit * $page;
+			$query = $this->db->where_in('pic', ($page - 1)* $limit, $limit * $page);
+			$query = $this->db->query($sql);
+			$result['data'] = $query->result_array();
+			$sql = "SELECT COUNT(*) AS count FROM pic WHERE type in($type)";
+			$query = $this->db->query($sql);
+			$result['count'] = (int)$query->row('count');
 		}else{
 			$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
+			$result['count'] = $this->db->count_all('pic');
 		}
-		$query = $this->db->query($sql);
-		$result['data'] = $query->result_array();
-		$result['count'] = $this->db->count_all('pic');
+
 		$result['limit'] = $limit;
 		$result['page'] = $page;
 		$result['status'] = 1;
