@@ -39,6 +39,7 @@ $this->load->helper('url');
 			margin-bottom:10px;
 			border-radius:5px;
 			overflow:hidden;
+			border:1px solid rgba(0,0,0,.15)
 		}
 		.main a img{
 			width:100%;
