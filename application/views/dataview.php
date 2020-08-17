@@ -31,6 +31,12 @@ $this->load->helper('url');
 			text-align: center;
 			margin:25% 0;
 		}
+		.main a{
+			transition:100ms;
+		}
+		.main a:hover{
+			transform:scale(1.05) ;
+		}
 		.selecte{
 			max-width: 1200px;
 			width: 100%;
@@ -41,36 +47,58 @@ $this->load->helper('url');
 			margin-bottom:20px;	
 		}
 		.box1{	
-			height:235px;
-			max-width: 1150px;
+			height:200px;
+			max-width: 1080px;
 			text-align: center;
 			display: flex;
 			flex-wrap:wrap;				
-			padding: 10px 0 ;
+			padding: 10px 0 10px 20px ;
 			overflow: hidden;
 			transition: 500ms;
 		}
 		.box1.hide{
-			height:75px;			
+			height:70px;			
 		}
 		.pagination{
 			padding:0;
 		}
 		.box1 .cur,.box1 .active,.box1 .cur:hover{
 			width:8%;
-			min-width:105px;
+			min-width:95px;
 			padding:5px 10px;
-			font-size:14px;		
+			font-size:12px;		
 		}
 		.box1 .cur a,.box1 .active a,.box1 .cur:hover a{
 			display:inline-block;
 			width:95px;
-			padding:5px;
+			padding:5px;		
+			transition: 100ms;
 			color:black;
 		}
-		.box1 .active a,.box1 div:hover a{			
+		.box1 .active a{			
 			box-shadow: rgba(0,0,0,.2) 0 2px 3px;			
 			border-radius:2px;
+		}
+		.box1 div:hover a{
+			box-shadow: rgba(0,0,0,.2) 0 2px 3px;			
+			border-radius:2px;
+			transform:translateY(-2px);
+		}
+		.selecte .main-left{
+			position: relative;
+			top: 30px;
+			left: 15px;
+			width: 60px;
+			line-height: 28px;
+			height: 28px;
+			font-size:12px;			
+			border: 1px solid rgba(221, 221, 221, 0.2);
+			border-radius: 2px;
+			text-align: center;
+			cursor: pointer;
+			background-color: #ededed;
+			padding:0 10px;
+			color:rgba(0, 0, 0, 0.5);
 		}
 		.selecte .main-right{
 			position: absolute;
@@ -79,6 +107,7 @@ $this->load->helper('url');
 			width: 28px;
 			line-height: 28px;
 			height: 28px;
+			font-size:12px;
 			border: 1px solid #ddd;
 			border-radius: 2px;
 			text-align: center;
@@ -93,6 +122,7 @@ $this->load->helper('url');
 			line-height: 28px;
 			font-size:14px;
 			height: 28px;
+			font-size:12px;
 			border: 1px solid #ddd;
 			border-radius: 2px;
 			text-align: center;
@@ -224,9 +254,9 @@ $this->load->helper('url');
 		$types = explode(',',$type);
 	 ?>
 	 <div class='selecte'>
-<!-- 		 <div class='main-left'>
-			 
-		 </div> -->
+		 <div class='main-left'>
+				-选择来源-
+		 </div>
 		 <div class='box1 hide'>
 			 <?php foreach($detail as $key=>$item){?>
 			 <div class="<?php echo in_array($item['id'],$types) ? 'active':'cur'?>">
@@ -251,7 +281,7 @@ $this->load->helper('url');
 				 <?php }?>
 			 </div>	 -->		
 		 </div>
-		 <div class='main-right' onclick="changeStatus()">
+		 <div class='main-right rote' onclick="changeStatus()">
 			 <span></span>
 		 </div>
 		 <div class='detele' >
@@ -364,13 +394,15 @@ $this->load->helper('url');
 	var _type="<?php echo $type;?>"	
 	var _page="<?php echo $page;?>"
 	function changeStatus(){
-		if(!$('.box1').hasClass('hide')){
-			$('.main-right').removeClass('rote')
-			$('.box1').addClass('hide')
-		}else{
-			$('.main-right').addClass('rote')
-			$('.box1').removeClass('hide')
-		}		
+		$('.main-right').toggleClass('rote')
+		$('.box1').toggleClass('hide')
+		// if($('.box1').hasClass('hide')){
+		// 	$('.main-right').removeClass('rote')
+		// 	$('.box1').removeClass('hide')
+		// }else{
+		// 	$('.box1').addClass('hide')
+		// 	$('.main-right').addClass('rote')			
+		// }		
 	}
 	function numberJump(e){
 		var value=e.innerHTML
