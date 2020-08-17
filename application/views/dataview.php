@@ -325,11 +325,11 @@ $this->load->helper('url');
 				   <?php }?>
 				   
 				   <?php if(($count/$limit < 5)){?>			   
-						<?php for($i=0;$i<ceil($count/$limit);$i++){?>
+						<?php for($i=1;$i<=ceil($count/$limit);$i++){?>
 							<?php if($page==$i){?>
 								<li class='page-li page-number page-active' onclick='numberJump(this)'><?php echo $page;?></li>						
 							<?php }else{?>
-								<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i+1;?></li>
+								<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i;?></li>
 							<?php }?>
 						<?php }?>
 					<?php }else{?>
