@@ -418,23 +418,23 @@ $this->load->helper('url');
 	}
 	function numberJump(e){
 		var value=e.innerHTML
-		window.location.href=window.location.origin+'/dataList/index?page='+value+'&type='+_type
+		window.location.href='/dataList/index?page='+value+'&type='+_type
 	}
 	function jump(){		
 		var value=$('#input')[0].value
 		if( value==='0' || value>Math.ceil(_count/_limit) ){return false}else{
-			window.location.href=window.location.origin+'/dataList/index?page='+value+'&type='+_type
+			window.location.href='/dataList/index?page='+value+'&type='+_type
 		}
 	}
 	function prev(){
 		console.log('上一页')
 		console.log(window.location.origin)	
-		window.location.href=window.location.origin+'/dataList/index?page='+(getParams('page')*1-1)+'&type='+_type
+		window.location.href='/dataList/index?page='+(getParams('page')*1-1)+'&type='+_type
 	}
 	function next(){
 		console.log('下一页')
 		console.log(window.location.origin)
-		window.location.href=window.location.origin+'/dataList/index?page='+(getParams('page')*1+1)+'&type='+_type
+		window.location.href='/dataList/index?page='+(getParams('page')*1+1)+'&type='+_type
 	}
 	// 地址栏参数
 	function getParams(organizeCode) {
@@ -457,7 +457,7 @@ $this->load->helper('url');
 		if(getParams('page') % 1 !== 0){			
 			window.alert('请输入正确的页码')
 			setTimeout(()=>{
-				window.location.href="http://127.0.0.1/dataList/index?page="+1;
+				window.location.href="/dataList/index?page="+1;
 			},100)
 		}
 		$('.to-top').toTop({
