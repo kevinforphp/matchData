@@ -100,7 +100,7 @@ $this->load->helper('url');
 			position: relative;
 			top: 30px;
 			left: 15px;
-			width: 60px;
+			min-width: 60px;
 			line-height: 28px;
 			height: 28px;
 			font-size:12px;			
