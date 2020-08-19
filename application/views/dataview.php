@@ -16,6 +16,7 @@ $this->load->helper('url');
 			background:#f1f1f1;
 		}
 		a,a:hover{
+			color:black;
 			text-decoration: none;
 		}
 		.main{
@@ -202,16 +203,24 @@ $this->load->helper('url');
 			background-color: #fff;
 		}
 		.detail-box .name{
-			    padding: 0 16px;
-			    margin: 5px 0;
-			    line-height: 1.35em;
-			    overflow: hidden;
-				text-align: left;
+			padding: 0 16px;
+			margin: 5px 0;
+			line-height: 1.35em;
+			overflow: hidden;
+			text-align: left;
 		}
 		.detail-box .detail{
-
-			        display: flex;
-			        align-items: center;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.detail-box .detail .date{
+			    margin-right: 8px;
+			    padding: 0 4px;
+			    line-height: 20px;
+			    font-size: 12px;
+			    color: #909399;
+			    border-radius: 4px;
 		}
 		.detail-title{
 			    margin-left: 8px;
@@ -314,10 +323,9 @@ $this->load->helper('url');
 						</div>
 						<div class="detail-box">
 							<div class="name"><?php echo $item['name']?></div>
-							<div class="detail">
-								<div class="detail-title">
-									来源:<?php echo $item['detail']?>
-								</div>
+							<div class="detail">								
+								<div class="detail-title">来源:<?php echo $item['detail']?></div>
+								<div class='date'><?php echo $item['date'] = date("Y-m-d");?></div>								
 							</div>
 						</div>
 					</div>
