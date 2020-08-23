@@ -15,14 +15,14 @@ class Api_model extends CI_Model
 		$type = isset($params['type']) && !empty($params['type']) ? $params['type']:'';
 		$limit = 30;
 		if($type){
-			$sql = "SELECT * FROM pic WHERE type in (".$type.")"." LIMIT ".($page - 1) * $limit.",".$limit * $page;
+			$sql = "SELECT * FROM pic WHERE type IN (".$type.")"."ORDER BY pic.createDate DESC"." LIMIT ".($page - 1) * $limit.",".$limit * $page;
 			$query = $this->db->query($sql);
 			$result['data'] = $query->result_array();
 			$sql = "SELECT COUNT(*) AS count FROM pic WHERE type in($type)";
 			$query = $this->db->query($sql);
 			$result['count'] = (int)$query->row('count');
 		}else{
-			$sql = "SELECT * FROM pic LIMIT ".($page - 1) * $limit.",".$limit * $page;
+			$sql = "SELECT * FROM pic ORDER BY pic.createDate DESC LIMIT ".($page - 1) * $limit.",".$limit * $page;
 			$query = $this->db->query($sql);
 			$result['data'] = $query->result_array();
 			$result['count'] = $this->db->count_all('pic');
