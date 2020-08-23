@@ -349,13 +349,13 @@ $this->load->helper('url');
 						</div>
 						<div class="detail-box">
 							<div class="name"><?php echo $item['name']?>
-								<?php if( (strtotime(date('Y-m-d H:i:s')) - strtotime($item['createDate']) < 7200 )){?>
+								<?php if( (strtotime(date('Y-m-d H:i:s')) - strtotime($item['createDate']))<7200){?>
 									<img  src="/static/img/new.png" alt="">
 								<?php }?>
 							</div>
 							<div class="detail">								
 								<div class="detail-title">来源:<?php echo $item['detail']?></div>
-								<div class='date'><?php echo date('m-d H:i:s',$item['date'])?></div>								
+								<div class='date'><?php echo date('m-d H:i:s',$item['date']/1000)?></div>								
 							</div>
 						</div>
 					</div>
