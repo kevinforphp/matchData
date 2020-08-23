@@ -59,6 +59,16 @@ $this->load->helper('url');
 			background:#fff;
 			margin-bottom:20px;	
 		}
+		.box{
+			position:relative;			
+		}
+		.box .title{
+			width:100%;
+			height:45px;
+			position:absolute;
+			top:0;
+			background:rgba(0,0,0,.8);
+		}
 		.box1{	
 			height:200px;
 			max-width: 1080px;
@@ -191,31 +201,45 @@ $this->load->helper('url');
 		}
 		.img-box{
 			height: 430px;
-			overflow: hidden;
+			overflow: hidden;			
 		}
+
 		.img-box img{
 			width: 100%;
 			height: auto;
 			vertical-align: middle;
 		}
 		.detail-box{
-			padding: 10px 16px;
+			width:100%;
+			padding: 10px 0;
 			background-color: #fff;
+			box-shadow: rgba(0,0,0,.1) 0 0 5px inset;
+			border-radius:0 0 10px 10px;
+			position:absolute;
+			top:0;
 		}
 		.detail-box .name{
-			padding: 0 16px;
-			margin: 5px 0;
+			padding: 0 25px;
+			margin: 5px 0 8px 0;
 			line-height: 1.35em;
 			overflow: hidden;
 			text-align: left;
+			position:relative;
+		}
+		.detail-box .name img{
+			width:50px;
+			height:50px;
+			position:absolute;
+			top:-15px;
 		}
 		.detail-box .detail{
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			padding: 0 25px;
 		}
 		.detail-box .detail .date{
-			    margin-right: 8px;
+			    /* margin-right: 8px; */
 			    padding: 0 4px;
 			    line-height: 20px;
 			    font-size: 12px;
@@ -223,7 +247,7 @@ $this->load->helper('url');
 			    border-radius: 4px;
 		}
 		.detail-title{
-			    margin-left: 8px;
+			    /* margin-left: 8px; */
 			    padding: 0 4px;
 			    line-height: 20px;
 			    font-size: 12px;
@@ -273,6 +297,7 @@ $this->load->helper('url');
 			$arr[$key] = $item['id'];
 		}
 		$types = explode(',',$type);
+		date_default_timezone_set('PRC');
 	 ?>
 	 <div class='selecte'>
 		 <div class='main-left'>
@@ -318,14 +343,19 @@ $this->load->helper('url');
 			<?php foreach($result as $item):?>
 				<a href="<?php echo $item['url'];?>" target="_blank">
 					<div class="box">
+						<!-- <div class='title'></div> -->
 						<div class="img-box">
 							<img src="<?php echo $item['post'].'?'.$imgStr?>" alt="<?php echo $item['detail']?>">
 						</div>
 						<div class="detail-box">
-							<div class="name"><?php echo $item['name']?></div>
+							<div class="name"><?php echo $item['name']?>
+								<?php if( (strtotime(date('Y-m-d H:i:s')) - strtotime($item['createDate']) < 7200 )){?>
+									<img  src="/static/img/new.png" alt="">
+								<?php }?>
+							</div>
 							<div class="detail">								
 								<div class="detail-title">来源:<?php echo $item['detail']?></div>
-								<div class='date'><?php echo $item['date'] = date("Y-m-d");?></div>								
+								<div class='date'><?php echo $item['date'] = date("m-d H:i:s");?></div>								
 							</div>
 						</div>
 					</div>
