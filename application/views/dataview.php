@@ -355,7 +355,7 @@ $this->load->helper('url');
 							</div>
 							<div class="detail">								
 								<div class="detail-title">来源:<?php echo $item['detail']?></div>
-								<div class='date'><?php echo date('m-d H:i:s',$item['date']/1000)?></div>								
+								<div class='date'><?php echo $item['createDate']?></div>								
 							</div>
 						</div>
 					</div>
