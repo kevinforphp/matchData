@@ -368,18 +368,19 @@ $this->load->helper('url');
 			   <div></div>
 		<?php }else{?>
 			  <ul class='pagination'>
+				  <li  class='page-li page-prev'><a href="/dataList/index?page=1&type="+<?php echo $type;?>>首页</a></li>
 				  <?php if($page==1){?>
 				  <li  class='page-li page-prev'>上一页</li>
 				  <?php }else{?>
 				   <li  class='page-li page-prev'  onclick='prev()'>上一页</li>
 				   <?php }?>
 				   
-				   <?php if(($count/$limit < 5)){?>			   
+				   <?php if(($count/$limit <= 5)){?>			   
 						<?php for($i=1;$i<=ceil($count/$limit);$i++){?>
 							<?php if($page==$i){?>
-								<li class='page-li page-number page-active' onclick='numberJump(this)'><?php echo $page;?></li>						
+								<li class='page-li page-number page-active' onclick='numberJump(<?php echo $page;?>)'><?php echo $page;?></li>						
 							<?php }else{?>
-								<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i;?></li>
+								<li class='page-li page-number'  onclick='numberJump(<?php echo $i;?>)'><?php echo $i;?></li>
 							<?php }?>
 						<?php }?>
 					<?php }else{?>
@@ -388,17 +389,17 @@ $this->load->helper('url');
 							<?php if($page<=ceil($count/$limit)-2){?>
 								<?php for($i=$page-3;$i<$page+2;$i++){?>
 									<?php if($page==$i+1){?>
-										<li class='page-li page-number page-active'  onclick='numberJump(this)'><?php echo $page;?></li>						
+										<li class='page-li page-number page-active'  onclick='numberJump(<?php echo $page;?>)'><?php echo $page;?></li>						
 									<?php }else{?>
-										<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i+1;?></li>
+										<li class='page-li page-number'  onclick='numberJump(<?php echo $i+1;?>)'><?php echo $i+1;?></li>
 									<?php }?>
 								<?php }?>
 							<?php }else{?>
 									<?php for($i=ceil($count/$limit)-4;$i<=ceil($count/$limit);$i++){?>
 										<?php if($page==$i){?>
-											<li class='page-li page-number page-active'  onclick='numberJump(this)'><?php echo $page;?></li>						
+											<li class='page-li page-number page-active'  onclick='numberJump(<?php echo $page;?>)'><?php echo $page;?></li>						
 										<?php }else{?>
-											<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i;?></li>
+											<li class='page-li page-number'  onclick='numberJump(<?php echo $i;?>)'><?php echo $i;?></li>
 										<?php }?>
 									<?php }?>
 							<?php }?>
@@ -408,9 +409,9 @@ $this->load->helper('url');
 						<?php }else{?>
 							<?php for($i=0;$i<=5;$i++){?>
 								<?php if($page==$i+1){?>
-									<li class='page-li page-number page-active'  onclick='numberJump(this)'><?php echo $page;?></li>						
+									<li class='page-li page-number page-active'  onclick='numberJump(<?php echo $page;?>)'><?php echo $page;?></li>						
 								<?php }else{?>
-									<li class='page-li page-number'  onclick='numberJump(this)'><?php echo $i+1;?></li>
+									<li class='page-li page-number'  onclick='numberJump(<?php echo $i+1;?>)'><?php echo $i+1;?></li>
 								<?php }?>
 							<?php }?>
 							<li class='page-li number-ellipsis'>...</li>
@@ -419,13 +420,15 @@ $this->load->helper('url');
 				  <?php if($page==ceil($count/$limit)){?>
 				  <li class='page-li page-next'>下一页</li>
 				  <?php }else{?>
-				   <li class='page-li page-next'  onclick='next()'>下一页</li>
+				   <li class='page-li page-next'  onclick='next()'>下一页</li>				  
 				   <?php }?>
+				   
 				   <li class='jump'>
 					   <span onclick='jump()'>跳转</span>
 					   <input id='input' value='' type="number" onsubmit="submit" maxlength=3>		
 						<span>页</span>
 				   </li>
+				   <li class='page-li' ><?php echo $page;?>/<?php echo ceil($count/$limit);?>页</li>
 			  </ul>
 		<?php }?>
 	</div>
@@ -454,16 +457,18 @@ $this->load->helper('url');
 		// 	$('.main-right').addClass('rote')			
 		// }		
 	}
-	function numberJump(e){
-		var value=e.innerHTML
+	function numberJump(value){		
 		window.location.href='/dataList/index?page='+value+'&type='+_type
 	}
 	function jump(){		
 		var value=$('#input')[0].value
-		if( value==='0' || value>Math.ceil(_count/_limit) ){return false}else{
+		if(value=='' || value=='0' || value>Math.ceil(_count/_limit) || value%1>0){
+			alert('请输入正确的页码')
+			return false
+			}else{
 			window.location.href='/dataList/index?page='+value+'&type='+_type
 		}
-	}
+	}	
 	function prev(){
 		console.log('上一页')
 		console.log(window.location.origin)	
@@ -495,7 +500,7 @@ $this->load->helper('url');
 		if(getParams('page') % 1 !== 0){			
 			window.alert('请输入正确的页码')
 			setTimeout(()=>{
-				window.location.href="/dataList/index?page="+1;
+				window.location.href="/dataList/index?page="+1+"&type="+_type;
 			},100)
 		}
 		$('.to-top').toTop({
